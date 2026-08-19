@@ -27,7 +27,7 @@ Lead with a **one-line TL;DR** (≤1 sentence). Then up to three tables, omittin
 | Item | Owner | Note |
 |------|-------|------|
 
-- **Owner** = who's on the hook: you / Claude / CI / external.
+- **Owner** = who's on the hook: User / Claude / CI / external.
 
 ## Rules
 - **Faithful, not flattering.** Include blocked, failed, skipped, and uncertain items — never hide them. If something's unverified, say so in the cell ("logic-proven, not run live").

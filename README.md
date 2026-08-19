@@ -1,59 +1,76 @@
 # claude-skills
 
-A toolkit of 16 battle-tested [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for Claude Code, built and used daily while running a startup. The theme: **context engineering** — moving context between sessions, between AI CLIs (Claude Code ↔ Codex ↔ Grok ↔ Antigravity), and between you and the model.
+A toolkit of 20 battle-tested [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for Claude Code, Goose, and Berd — built and used daily while running startups. 
 
-## Install
+The core theme: **context engineering & agent orchestration** — routing context between sessions, fanning out multi-model agent panels (Claude ↔ Codex ↔ Grok ↔ Gemini), and keeping human judgment at high leverage.
+
+---
+
+## Quick Install
 
 ```bash
 git clone https://github.com/ArchieeR/claude-skills.git
 cp -R claude-skills/skills/* ~/.claude/skills/
 ```
 
-Or symlink individual skills so `git pull` keeps them fresh:
+Or symlink individual skills so `git pull` keeps them updated:
 
 ```bash
 ln -s "$(pwd)/claude-skills/skills/handoff" ~/.claude/skills/handoff
 ```
 
-Each skill is invoked with `/<name>` inside Claude Code, or triggers automatically when its description matches what you're doing.
+Each skill can be invoked with `/<name>` or triggered automatically when its description matches what you're doing.
 
-## The skills
+---
 
-### Session interop — move context between sessions and agents
+## The 20 Skills
 
-| Skill | What it does |
-|-------|--------------|
-| [`handoff`](skills/handoff) | Port a conversation between Claude Code and Codex CLI, either direction — pull a clean transcript, push it into another session so that agent continues with full prior logic. |
-| [`grab`](skills/grab) | Digest another Claude Code session's recent activity (decisions, built-vs-uncommitted, open questions) via a cheap worker model reading its transcript — without blowing up your context. |
-| [`peek`](skills/peek) | Quick glance at what another running CLI session is doing right now — last few turns only, the opposite of a full handoff. |
+### ⚡ Productivity & Focus — human-centered output shaping
+
+| Skill | Description |
+|-------|-------------|
+| [`i-have-adhd`](skills/i-have-adhd) | Shape model output specifically for an ADHD brain — lead with immediate action, number multi-step work, suppress tangents, provide exact time estimates, and make wins visible. |
+
+### 🛠️ Decisions & Orchestration — get maximum leverage from models
+
+| Skill | Description |
+|-------|-------------|
+| [`team`](skills/team) | Multi-model implement → verify → fix → commit loop. Features Mode A (Full credit), Mode B (Shared), and Mode C (Delegated orchestration), with strict verification gates to prevent fabricated findings from burning cycles. |
+| [`prd-interview`](skills/prd-interview) | Systematic product discovery interview for new features. Maps uncertainty spaces, locks defaults, and asks mutually exclusive forks via interactive prompts to yield a clean decision ledger. |
+| [`counsel`](skills/counsel) | Run multi-LLM panels (Codex / Azure GPT, Gemini, Grok) in parallel on hard architectural decisions. Synthesises findings into an agree/disagree table + net recommendation. |
+| [`ask`](skills/ask) | When context sprawls, distil open state into a small set of structured decisions — separating self-resolvable items from genuine forks surfaced via interactive choices. |
+| [`recap`](skills/recap) | Dense table-format recap of the current session: what was done, status, decisions made, and open follow-ups. |
+
+### 🔄 Session Interop — move context across sessions & model CLIs
+
+| Skill | Description |
+|-------|-------------|
+| [`handoff`](skills/handoff) | Port a conversation between Claude Code and Codex CLI in either direction — pull a clean transcript, push it into another session so that agent continues with full prior logic. |
+| [`grab`](skills/grab) | Digest another Claude Code session's recent activity (decisions, built-vs-uncommitted, open questions) via a background worker reading its transcript without bloating your main context. |
+| [`peek`](skills/peek) | Quick glance at what another running CLI session is doing right now — last few turns only. |
 | [`codex-context`](skills/codex-context) | Import a Codex CLI conversation into Claude's context for review, continuation, or a second opinion. |
-| [`ag-context`](skills/ag-context) | Same, for Antigravity (Gemini) sessions. |
-| [`grok-sync`](skills/grok-sync) | Pull progress from a grok CLI session into Claude Code so it can continue work started in Grok. |
-| [`session-search`](skills/session-search) | Find past Claude Code sessions across ALL projects by name or topic — searches the raw `~/.claude/projects/**/*.jsonl` transcripts with an agent so huge files never hit your main context. |
-| [`claude-manage`](skills/claude-manage) | List and resume sessions across project subdirectories — fixes the "which directory did I start that session from?" problem. |
+| [`ag-context`](skills/ag-context) | Import Antigravity (Gemini) sessions into Claude's context. |
+| [`grok-sync`](skills/grok-sync) | Pull progress from a Grok CLI session into Claude Code so it can continue work started in Grok. |
+| [`session-search`](skills/session-search) | Find past sessions across ALL projects by name (`/rename`) or topic — searches raw `~/.claude/projects/**/*.jsonl` transcripts via sub-agents so huge files stay out of main context. |
+| [`claude-manage`](skills/claude-manage) | List and resume sessions across project subdirectories — solves "which folder did I start that session in?". |
 
-### Decisions & orchestration — get more out of the model
+### 🛠️ Dev Workflow & System Performance
 
-| Skill | What it does |
-|-------|--------------|
-| [`counsel`](skills/counsel) | Fire multiple LLM panels (Codex, Antigravity, optionally Grok/Perplexity) in parallel on a hard decision, then synthesise into an agree/disagree table + net recommendation. |
-| [`ask`](skills/ask) | When context sprawls, distil it into a small set of structured decisions — separating "just decide this" from "needs your judgement" — surfaced as clickable questions. |
-| [`recap`](skills/recap) | Table-format recap of the current session: what was done, status, decisions, open follow-ups. Works in any session type. |
-
-### Dev workflow — ship with fewer surprises
-
-| Skill | What it does |
-|-------|--------------|
+| Skill | Description |
+|-------|-------------|
+| [`memory`](skills/memory) | RAM & MCP-stacking audit runbook for macOS. Detects duplicate MCP servers across global and project config layers, analyzes process math, and fixes Spotlight `node_modules` indexing churn. |
+| [`mcp-config`](skills/mcp-config) | Add, configure, and troubleshoot MCP servers — remote and local, auth headers, scopes, and diagnostic playbooks. |
 | [`env-sync`](skills/env-sync) | Compare and sync env vars between `.env.local` and Vercel (production/preview). Repo-agnostic, masks values, never deletes. |
 | [`visual-qa`](skills/visual-qa) | Screenshot-driven feedback loop to verify UI actually looks right before committing. |
-| [`mcp-config`](skills/mcp-config) | Add, configure, and troubleshoot MCP servers — remote and local, auth headers, scopes, and a diagnostics playbook for "it won't connect". |
-| [`vercel-troubleshooting`](skills/vercel-troubleshooting) | Playbook for the common Vercel build failures in Next.js apps: module resolution, type safety, config pitfalls. |
+| [`vercel-troubleshooting`](skills/vercel-troubleshooting) | Playbook for common Vercel build failures in Next.js apps: module resolution, type safety, config pitfalls. |
 | [`nextjs-ui`](skills/nextjs-ui) | Layout architecture, responsive patterns, and color-system conventions for Next.js + React 19 + Tailwind v4 + shadcn/ui. |
 
-## Notes
+---
 
-- Skills that reference external CLIs (`codex`, `agy`, `grok`) assume you have those installed and authed; each skill degrades gracefully and tells you what's missing.
-- Everything here is scrubbed of project-specific context — paths and examples are generic. Adapt the examples (e.g. repo tables in `env-sync`) to your own setup.
+## Usage Notes
+
+- **Model Agnostic / Multi-CLI:** Skills referencing external CLIs (`codex`, `agy`, `grok`) degrade gracefully if those binaries aren't installed or authed.
+- **Scrubbed & Generic:** All skills are scrubbed of personal paths, private tokens, and internal project names so they run out of the box anywhere.
 
 ## License
 

@@ -13,7 +13,7 @@ This skill exists because of a specific operating model (see below): the user si
 
 ## The core move
 
-1. **Survey the open state.** Scan the recent conversation, every sub-agent report still unactioned, and any Linear/vault/code context in play, for everything unresolved: pending decisions, forks, blockers, things you flagged but never got a call on, recommendations awaiting a yes/no.
+1. **Survey the open state.** Scan the recent conversation, every sub-agent report still unactioned, and any project/vault/code context in play, for everything unresolved: pending decisions, forks, blockers, things you flagged but never got a call on, recommendations awaiting a yes/no.
 
 2. **Sort each item into one of three buckets:**
    - **Actionable** — a concrete choice with clear options. The user can just pick. ("Ship the fix now / batch it later / skip it.")
@@ -27,7 +27,7 @@ This skill exists because of a specific operating model (see below): the user si
 ## Primary use cases
 
 ### 1. Distilling fat sub-agent reports
-You've fanned work out to Opus/Codex/Sonnet sub-agents (audits, investigations, implementations) and they return long reports — each ending in its own "Questions for you". **Do not relay the reports.** Instead:
+You've fanned work out to sub-agents (audits, investigations, implementations) and they return long reports — each ending in its own "Questions for you". **Do not relay the reports.** Instead:
 - Extract every genuine decision/question across all returned reports
 - Drop the ones you can self-resolve (take the default, note it)
 - De-dupe overlapping questions from different agents
@@ -35,7 +35,7 @@ You've fanned work out to Opus/Codex/Sonnet sub-agents (audits, investigations, 
 - The user should never have to read the raw agent output to make the call — your question + options carry the needed context.
 
 ### 2. The multi-project manager pattern
-The user runs ONE session (you) as a manager across many Linear projects, rather than a session per project. You dispatch and track sub-agents per workstream, journal findings to Linear, and the user makes cross-cutting calls. When invoked here, **gather open decisions across ALL active workstreams** — not just the one most recently discussed — and present them as a prioritised batch so the user can steer the whole portfolio from one place. Group/label by project (use the `header` chip) so it's clear which workstream each decision belongs to.
+The user runs ONE session (you) as a manager across many projects, rather than a session per project. You dispatch and track sub-agents per workstream, journal findings to your task board, and the user makes cross-cutting calls. When invoked here, **gather open decisions across ALL active workstreams** — not just the one most recently discussed — and present them as a prioritised batch so the user can steer the whole portfolio from one place. Group/label by project (use the `header` chip) so it's clear which workstream each decision belongs to.
 
 ### 3. General "I'm overwhelmed / just ask me"
 Any time the discussion has accumulated more open threads than the user can hold. Compress and ask.
@@ -50,6 +50,22 @@ Any time the discussion has accumulated more open threads than the user can hold
 - **Previews** (single-select only) when the choice is a concrete artifact worth comparing — UI mockups, copy variants, reward tables, layouts. Skip for plain preference questions.
 - **multiSelect** only when choices genuinely aren't exclusive.
 
+## Context artifacts — pair the questions with a page when depth helps
+
+Option descriptions carry ~2 sentences. When a decision genuinely needs more context than that, don't cram it into the questions and don't dump it as chat text — **publish a compact Artifact first, then ask**, with the one-sentence framing linking to it. An artifact with the current-state summary, wireframe sketches per option, what's already locked, and a recommendation per call — followed by a 4-question /ask batch that mirrors its sections. The user skims the page for depth, answers from the chips.
+
+**Reach for a context artifact when:**
+- The options are **visual/structural** (layouts, UI shells, flows) — sketch them as simple wireframes.
+- The decision set rests on a **body of findings** (audit results, comparison tables, scoreboards) the user hasn't read.
+- There are **more than ~2 decisions sharing one backdrop** (same feature, same audit, same plan) — one artifact serving the whole batch beats per-question cramming.
+- The material has **reuse value past the answer** (QA checklist, findings ledger, decision record).
+
+**Keep the contract:**
+- Artifact = depth; questions = the decision. Every question must still be answerable from its option descriptions alone.
+- Label sections/options in the artifact with the SAME ids/names as the question headers so page and chips cross-reference cleanly.
+- Mark what's **already locked** in the artifact so the user sees you're not re-asking settled calls.
+- Skip the artifact for plain preference/sequencing questions — a page for "merge now or after QA?" is overhead, not help.
+
 ## What NOT to do
 
 - Don't precede the tool call with a long recap. One sentence of framing is plenty — the questions carry the context.
@@ -63,11 +79,13 @@ Any time the discussion has accumulated more open threads than the user can hold
 - Act on the locked decisions immediately (or dispatch the work to sub-agents).
 - If items remain, fire the next batch of up to 4.
 - For anything the user explicitly parked, note it as parked — don't re-ask it next time.
-- Journal locked decisions to Linear where there's an active project (the manager pattern relies on Linear as the durable record).
 
 ## Shape of a good output
 
 > "A few open calls — here are the ones that actually need you."
 > [AskUserQuestion with 2–4 prioritised, mutually-exclusive, recommended-first questions]
 
-Compress, sort, prioritise, ask.
+And when the decisions deserve depth (visual options, audit-backed, shared backdrop):
+
+> "Breakdown with wireframes + recommendations: <artifact link>. The four calls:"
+> [AskUserQuestion whose headers mirror the artifact's sections]

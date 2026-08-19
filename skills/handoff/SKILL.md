@@ -47,15 +47,14 @@ If destination is Claude, Read `/tmp/handoff-brief.md` and summarise (what it wa
 This RUNS Codex and spends tokens — confirm with the user first.
 ```bash
 # continue an existing Codex session with the pulled context:
-python3 ~/.claude/skills/handoff/handoff.py push /tmp/handoff-brief.md --resume <target-id> "continue the brand work using this logic"
+python3 ~/.claude/skills/handoff/handoff.py push /tmp/handoff-brief.md --resume <target-id> "continue work using this logic"
 
 # or spin up a fresh Codex session seeded with it:
 python3 ~/.claude/skills/handoff/handoff.py push /tmp/handoff-brief.md --new "pick this up"
 ```
-Relay Codex's reply back to the user. To then pull Codex's continuation back into Claude, re-run Step 3 on the newest Codex rollout.
+Relay Codex's reply back to the user.
 
 ## Notes & limits
 - **Not real-time.** Syncs at message boundaries — re-pull to get new lines from a still-running session.
-- **Reasoning is stripped** on pull (Claude `thinking` blocks, Codex encrypted reasoning) — only user/assistant text, plus tool calls under `--full`.
+- **Reasoning is stripped** on pull — only user/assistant text, plus tool calls under `--full`.
 - **Loop safety:** PUSH is a single one-shot call, not an auto-loop. Keep a human in the loop; never wire PULL→PUSH→PULL on a timer without a turn cap.
-- The lighter `/cx` skill is just the Codex→Claude PULL on its own; `/handoff` is the full matrix.
