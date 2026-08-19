@@ -4,6 +4,10 @@
 [![Skills Count](https://img.shields.io/badge/Active%20Skills-13-blue.svg)](https://github.com/ArchieeR/claude-skills)
 [![Compatibility](https://img.shields.io/badge/Compatible%20With-Claude%20Code%20%7C%20Goose%20%7C%20Berd-orange.svg)](https://github.com/ArchieeR/claude-skills)
 
+<p align="center">
+  <img src="assets/banner.png" alt="Claude Skills Banner" width="100%">
+</p>
+
 A curated collection of production-grade [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for **Claude Code**, **Goose**, and **Berd**.
 
 Designed for **context engineering & multi-agent orchestration** — fanning out multi-model panels, offloading heavy coding to worker agents, managing decision UI, and keeping human judgment at high leverage.
