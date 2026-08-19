@@ -12,27 +12,35 @@ Designed for **context engineering & multi-agent orchestration** — fanning out
 
 ## 🚀 Quick Install
 
-### Option A: Install All Skills
+### Option A: 1-Command Install via `npx` / `skillfish` (Recommended)
 
-Clone the repository and copy the skills directly into your global `~/.claude/skills/` directory:
+Run a single command without cloning:
 
 ```bash
-git clone https://github.com/ArchieeR/claude-skills.git
-mkdir -p ~/.claude/skills
-cp -R claude-skills/skills/* ~/.claude/skills/
+npx skillfish add ArchieeR/claude-skills --all
 ```
 
-### Option B: Symlink Individual Skills
+To install a specific skill (e.g., `ask` or `i-have-adhd`):
 
-Symlink specific skills so a simple `git pull` keeps them updated automatically:
+```bash
+npx skillfish add ArchieeR/claude-skills ask
+```
+
+---
+
+### Option B: Clone & Symlink / Copy
+
+Clone the repository and copy or symlink into your global `~/.claude/skills/` directory:
 
 ```bash
 git clone https://github.com/ArchieeR/claude-skills.git ~/claude-skills
 mkdir -p ~/.claude/skills
 
-# Example: Symlink handoff and ask
+# Copy all active skills
+cp -R ~/claude-skills/skills/* ~/.claude/skills/
+
+# OR symlink individual skills so `git pull` keeps them fresh:
 ln -s ~/claude-skills/skills/handoff ~/.claude/skills/handoff
-ln -s ~/claude-skills/skills/ask ~/.claude/skills/ask
 ```
 
 ---
