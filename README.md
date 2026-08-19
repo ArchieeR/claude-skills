@@ -1,12 +1,12 @@
 # 🛠️ claude-skills
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills Count](https://img.shields.io/badge/Active%20Skills-14-blue.svg)](https://github.com/ArchieeR/claude-skills)
+[![Skills Count](https://img.shields.io/badge/Active%20Skills-13-blue.svg)](https://github.com/ArchieeR/claude-skills)
 [![Compatibility](https://img.shields.io/badge/Compatible%20With-Claude%20Code%20%7C%20Goose%20%7C%20Berd-orange.svg)](https://github.com/ArchieeR/claude-skills)
 
-A curated collection of 14 production-grade [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for **Claude Code**, **Goose**, and **Berd**.
+A curated collection of production-grade [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for **Claude Code**, **Goose**, and **Berd**.
 
-Designed for **context engineering & multi-agent orchestration** — fanning out multi-model panels, porting context across AI CLIs, managing system health, and keeping human judgment at high leverage.
+Designed for **context engineering & multi-agent orchestration** — fanning out multi-model panels, offloading heavy coding to worker agents, managing decision UI, and keeping human judgment at high leverage.
 
 ---
 
@@ -20,7 +20,7 @@ Run a single command without cloning:
 npx skillfish add ArchieeR/claude-skills --all
 ```
 
-To install a specific skill (e.g., `ask` or `i-have-adhd`):
+To install a specific skill (e.g., `ask` or `team`):
 
 ```bash
 npx skillfish add ArchieeR/claude-skills ask
@@ -40,41 +40,30 @@ mkdir -p ~/.claude/skills
 cp -R ~/claude-skills/skills/* ~/.claude/skills/
 
 # OR symlink individual skills so `git pull` keeps them fresh:
-ln -s ~/claude-skills/skills/handoff ~/.claude/skills/handoff
+ln -s ~/claude-skills/skills/ask ~/.claude/skills/ask
 ```
 
 ---
 
-## 🧰 The 14 Active Skills
+## 🧰 Core Highlighted Skills
 
-### 🧠 Focus & Output Formatting
-
-| Skill | Trigger / Command | Description |
-| :--- | :--- | :--- |
-| **[`i-have-adhd`](skills/i-have-adhd)** | `/i-have-adhd` | Shapes model output specifically for ADHD focus: leads with immediate action, numbers multi-step work, suppresses tangents, and provides exact time estimates. |
-
-### ⚔️ Decisions & Multi-Model Orchestration
+### 🧠 Decisions, Focus & Multi-Model Orchestration
 
 | Skill | Trigger / Command | Description |
 | :--- | :--- | :--- |
-| **[`team`](skills/team)** | `/team [a\|b\|c] <task>` | Multi-model implement → verify → fix → commit loop (Modes A, B, C) with strict verification gates to prevent fabricated findings from burning fix cycles. |
-| **[`prd-interview`](skills/prd-interview)** | `/prd-interview`, `/prd` | Systematic product discovery interview for new features. Maps uncertainty spaces, locks defaults, and interviews via interactive choices to generate a clean decision ledger. |
-| **[`counsel`](skills/counsel)** | `/counsel <question>` | Fires parallel LLM panels (Codex / Azure GPT, Gemini, Grok) on hard decisions and synthesises findings into an agree/disagree table + net recommendation. |
-| **[`ask`](skills/ask)** | `/ask` | Distils sprawling context and fat agent reports into structured, actionable choices via interactive questions — separating self-resolvable items from genuine forks. |
-| **[`recap`](skills/recap)** | `/recap`, `/table` | Dense table-format recap of the current session: work done, status, decisions made, and open follow-ups. |
+| **[`ask`](skills/ask)** | `/ask` | Converts fat text and sprawling sub-agent reports into interactive `AskUserQuestion` decision chips so you can steer in seconds. |
+| **[`counsel`](skills/counsel)** | `/counsel <question>` | Fires parallel consensus panels across **Grok CLI** (infra scouting) and **Codex CLI** (code review) to eliminate blind spots. |
+| **[`team`](skills/team)** | `/team [a\|b\|c] <task>` | Multi-model implement → verify → fix → commit loop with 3 staffing modes to offload heavy investigation, writing, and fixing to Codex workers. |
+| **[`recap`](skills/recap)** | `/recap`, `/table` | Dense table-format recap of the current session: work done, status, decisions made, and open follow-up items. |
+| **[`i-have-adhd`](skills/i-have-adhd)** | `/i-have-adhd` | Shapes model output specifically for ADHD focus: leads with immediate action, numbers multi-step work, suppresses tangents, and gives exact time estimates. |
 
-### 🔄 Session Interop & Context Portability
+### 🛠️ Dev Workflow, Product & Session Search
 
 | Skill | Trigger / Command | Description |
 | :--- | :--- | :--- |
-| **[`handoff`](skills/handoff)** | `/handoff` | Full bidirectional context bridge between Claude Code and Codex CLI — pull clean transcripts or push logic into new or resumed sessions. |
+| **[`prd-interview`](skills/prd-interview)** | `/prd-interview`, `/prd` | Systematic product discovery interview for new features. Maps uncertainty spaces, locks defaults, and interviews via interactive choices. |
 | **[`grab`](skills/grab)** | `/grab <session>` | Background worker digest of another session's recent work, decisions, and uncommitted state without bloating your active context window. |
 | **[`session-search`](skills/session-search)** | `find the session...` | Deep-searches raw `.jsonl` session transcripts across all project subdirectories by session title (`/rename`) or topic via sub-agents. |
-
-### 🛠️ Dev Workflow & Infrastructure
-
-| Skill | Trigger / Command | Description |
-| :--- | :--- | :--- |
 | **[`mcp-config`](skills/mcp-config)** | `troubleshoot mcp...` | Add, configure, and troubleshoot MCP servers — remote and local servers, auth headers, scopes, and diagnostic playbooks. |
 | **[`env-sync`](skills/env-sync)** | `/env-sync` | Compare and sync environment variables between `.env.local` and Vercel (production/preview). Repo-agnostic, masks values, and never deletes. |
 | **[`visual-qa`](skills/visual-qa)** | `/visual-qa` | Screenshot-driven feedback loop (via Firefox / DevTools) to verify UI actually looks right before committing. |
