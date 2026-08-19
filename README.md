@@ -1,6 +1,6 @@
 # claude-skills
 
-A toolkit of 15 battle-tested [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for Claude Code, Goose, and Berd — built and used daily while running startups.
+A toolkit of 14 battle-tested [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills) for Claude Code, Goose, and Berd — built and used daily while running startups.
 
 The core theme: **context engineering & agent orchestration** — routing context between sessions, fanning out multi-model agent panels (Claude ↔ Codex ↔ Grok ↔ Gemini), and keeping human judgment at high leverage.
 
@@ -23,7 +23,7 @@ Each skill can be invoked with `/<name>` or triggered automatically when its des
 
 ---
 
-## The 15 Active Skills
+## The 14 Active Skills
 
 ### ⚡ Focus & Productivity — human-centered output shaping
 
@@ -49,14 +49,13 @@ Each skill can be invoked with `/<name>` or triggered automatically when its des
 | [`grab`](skills/grab) | Digest another Claude Code session's recent activity (decisions, built-vs-uncommitted, open questions) via a background worker reading its transcript. |
 | [`session-search`](skills/session-search) | Find past sessions across ALL projects by name (`/rename`) or topic — searches raw `~/.claude/projects/**/*.jsonl` transcripts via sub-agents. |
 
-### 🛠️ Dev Workflow & System Performance
+### 🛠️ Dev Workflow & Infrastructure
 
 | Skill | Description |
 |-------|-------------|
-| [`memory`](skills/memory) | RAM & MCP-stacking audit runbook for macOS. Detects duplicate MCP servers across global and project config layers and fixes Spotlight `node_modules` indexing churn. |
 | [`mcp-config`](skills/mcp-config) | Add, configure, and troubleshoot MCP servers — remote and local, auth headers, scopes, and diagnostic playbooks. |
 | [`env-sync`](skills/env-sync) | Compare and sync env vars between `.env.local` and Vercel (production/preview). Repo-agnostic, masks values, never deletes. |
-| [`visual-qa`](skills/visual-qa) | Screenshot-driven feedback loop to verify UI actually looks right before committing. |
+| [`visual-qa`](skills/visual-qa) | Screenshot-driven feedback loop (via Firefox / DevTools) to verify UI actually looks right before committing. |
 | [`vercel-troubleshooting`](skills/vercel-troubleshooting) | Playbook for common Vercel build failures in Next.js apps: module resolution, type safety, config pitfalls. |
 | [`nextjs-ui`](skills/nextjs-ui) | Layout architecture, responsive patterns, and color-system conventions for Next.js + React 19 + Tailwind v4 + shadcn/ui. |
 
