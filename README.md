@@ -61,6 +61,55 @@ ln -s ~/claude-skills/skills/ask ~/.claude/skills/ask
 | **[`recap`](skills/recap)** | `/recap`, `/table` | Dense table-format recap of the current session: work done, status, decisions made, and open follow-up items. |
 | **[`adhd`](skills/adhd)** | `/adhd` | Shapes model output specifically for ADHD focus: leads with immediate action, numbers multi-step work, suppresses tangents, and gives exact time estimates. |
 
+---
+
+### 🖼️ Core Skill Visual Guides
+
+#### 1. [`/ask`](skills/ask) — Decision UI & Choice Chips
+Converts sprawling context and fat sub-agent reports into clean `AskUserQuestion` decision chips with explicit trade-offs.
+
+<p align="center">
+  <img src="assets/ask.jpg" alt="Ask Skill Visual Guide" width="100%">
+</p>
+
+---
+
+#### 2. [`/counsel`](skills/counsel) — Multi-Model Consensus Panels
+Fires parallel panels across **Grok CLI** (for infrastructure scouting) and **Codex CLI** (for code review) to eliminate blind spots in ~35 seconds.
+
+<p align="center">
+  <img src="assets/counsel.jpg" alt="Counsel Skill Visual Guide" width="100%">
+</p>
+
+---
+
+#### 3. [`/team`](skills/team) — Multi-Model Execution & Offloading
+Offloads heavy investigation, writing, and fixing to Codex worker agents across 3 staffing modes (A, B, C) while enforcing strict verification gates (*"Sonnet never leads"*).
+
+<p align="center">
+  <img src="assets/team.jpg" alt="Team Skill Visual Guide" width="100%">
+</p>
+
+---
+
+#### 4. [`/recap`](skills/recap) — Session State at a Glance
+Dense, 3-table snapshot of the session: status of work done, decisions locked, and open follow-up items.
+
+<p align="center">
+  <img src="assets/recap.jpg" alt="Recap Skill Visual Guide" width="100%">
+</p>
+
+---
+
+#### 5. [`/adhd`](skills/adhd) — Action-First Output Shaping
+Shapes model output specifically for ADHD focus: leads with code/commands first, provides exact time estimates, numbers multi-step work, and eliminates prose fluff.
+
+<p align="center">
+  <img src="assets/adhd.jpg" alt="ADHD Skill Visual Guide" width="100%">
+</p>
+
+---
+
 ### 🛠️ Dev Workflow, Product & Session Search
 
 | Skill | Trigger / Command | Description |
