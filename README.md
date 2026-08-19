@@ -55,7 +55,7 @@ ln -s ~/claude-skills/skills/ask ~/.claude/skills/ask
 | **[`counsel`](skills/counsel)** | `/counsel <question>` | Fires parallel consensus panels across **Grok CLI** (infra scouting) and **Codex CLI** (code review) to eliminate blind spots. |
 | **[`team`](skills/team)** | `/team [a\|b\|c] <task>` | Multi-model implement → verify → fix → commit loop with 3 staffing modes to offload heavy investigation, writing, and fixing to Codex workers. |
 | **[`recap`](skills/recap)** | `/recap`, `/table` | Dense table-format recap of the current session: work done, status, decisions made, and open follow-up items. |
-| **[`i-have-adhd`](skills/i-have-adhd)** | `/i-have-adhd` | Shapes model output specifically for ADHD focus: leads with immediate action, numbers multi-step work, suppresses tangents, and gives exact time estimates. |
+| **[`adhd`](skills/adhd)** | `/adhd` | Shapes model output specifically for ADHD focus: leads with immediate action, numbers multi-step work, suppresses tangents, and gives exact time estimates. |
 
 ### 🛠️ Dev Workflow, Product & Session Search
 
